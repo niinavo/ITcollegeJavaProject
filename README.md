@@ -1,1 +1,2 @@
 # ITcollegeJavaProject
+Quadratic equation solver
