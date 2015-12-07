@@ -26,8 +26,6 @@ import javafx.stage.Stage;
  */
 public class QuadraticEquationCalculator extends Application{
     Stage stage;
-    GridPane laud;
-    StackPane maailm;
     /**
      * Start the JavaFX application for solving quadratic equations.
      *
@@ -38,10 +36,6 @@ public class QuadraticEquationCalculator extends Application{
     public void start(Stage primaryStage) throws Exception {
         stage=primaryStage;
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
-        //laud=new GridPane();
-        //laud.setGridLinesVisible(true);
-        //maailm=new StackPane();
-        //maailm.getChildren().add(laud);
         Group root=new Group();
         Scene scene=new Scene(root,600,300,Color.LIGHTGRAY);
 
@@ -92,7 +86,7 @@ public class QuadraticEquationCalculator extends Application{
         X1Root.setFont(new Font("Arial",14));
         TextField x1Field=new TextField();
         hboxX1.getChildren().addAll(X1Root,x1Field);
-        //entryBox.getChildren().add(this.coefficientA);
+        
         HBox hboxX2=new HBox(5);
         Label X2Root = new Label("x2 = ");
         X2Root.setFont(new Font("Arial",14));
@@ -100,7 +94,6 @@ public class QuadraticEquationCalculator extends Application{
         Button calculateRootsButton=new Button("Calculate roots");
         calculateRootsButton.setFont(new Font("Arial", 14));
         hboxX2.getChildren().addAll(X2Root,X2Field,calculateRootsButton);
-        //entryBox.getChildren().add(this.coefficientB);
 
         vbox.getChildren().addAll(labelEnterCoefficients,hboxA,hboxB,hboxC,hboxRoots,hboxX1,hboxX2);
         root.getChildren().addAll(hboxEquation,vbox);
