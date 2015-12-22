@@ -1,9 +1,5 @@
 package javaprojekt;
 
-/**
- * Created by user on 3.12.2015.
- */
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -20,23 +16,19 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * JavaFX-based application for solving quadratic equations.
- *
- * @author Niina Voropajeva
+ * Created by user on 22.12.2015.
  */
-public class QuadraticEquationCalculator extends Application{
-    Stage stage;
-    /**
-     *
-     * @param /stage Primary stage.
-     * @throws Exception JavaFX-related exception.
-     */
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        stage=primaryStage;
+public class QuadraticEquationCalculator {
+    Stage stage=new Stage();
+    
+    QuadraticEquationCalculator(){
+        setupScene2();
+    }
+
+    private void setupScene2() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
-        Scene scene=new Scene(root,600,300,Color.WHITE);
+        Scene scene=new Scene(root,600,300, Color.WHITE);
 
         VBox vbox = new VBox();
         vbox.setSpacing(10);
@@ -85,7 +77,7 @@ public class QuadraticEquationCalculator extends Application{
         X1Root.setFont(new Font("Lucida Sans", 16));
         TextField x1Field=new TextField();
         hboxX1.getChildren().addAll(X1Root,x1Field);
-        
+
         HBox hboxX2=new HBox(5);
         Label X2Root = new Label("x2 = ");
         X2Root.setFont(new Font("Lucida Sans", 16));
@@ -100,16 +92,5 @@ public class QuadraticEquationCalculator extends Application{
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> System.exit(0));
-
-    }
-
-    /**
-     * Main function for running the JavaFX-based quadratic equation solver.
-     *
-     * @param arguments
-     */
-    public static void main(final String[] arguments)
-    {
-        Application.launch(arguments);
     }
 }
