@@ -16,14 +16,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * JavaFX application for solving quadratic equations a*x*x+b*x+c=0
+ * if coefficients a,b and c are entered.
+ *
+ * @author Niina Voropajeva
+ */
+
 
 public class QuadraticEquationCalculator {
     Stage stage = new Stage();
-    /** TextField for coefficient A of quadratic equation. */
+    /** TextField for entering coefficient a of quadratic equation. */
     TextField coefficientA=new TextField();
-    /** TextField for coefficient B of quadratic equation. */
+    /** TextField for entering coefficient b of quadratic equation. */
     TextField coefficientB=new TextField();
-    /** TextField for coefficient C of quadratic equation. */
+    /** TextField for entering coefficient c of quadratic equation. */
     TextField coefficientC=new TextField();
 
     QuadraticEquationCalculator() {
@@ -76,7 +83,9 @@ public class QuadraticEquationCalculator {
         ImageView imv2=new ImageView();
         Image imageQuadraticEquationRoots=new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
         imv2.setImage(imageQuadraticEquationRoots);
-        hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2);
+        Button calculateRootsButton=new Button("Calculate roots");
+        calculateRootsButton.setFont(new Font("Lucida Sans", 16));
+        hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2,calculateRootsButton);
 
         HBox hboxEquationRootX1=new HBox(5);
         Label labelRootX1 = new Label("x1 = ");
@@ -88,9 +97,7 @@ public class QuadraticEquationCalculator {
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setFont(new Font("Lucida Sans", 16));
         TextField RootX2Field=new TextField();
-        Button calculateRootsButton=new Button("Calculate roots");
-        calculateRootsButton.setFont(new Font("Lucida Sans", 16));
-        hboxEquationRootX2.getChildren().addAll(labelRootX2,RootX2Field,calculateRootsButton);
+        hboxEquationRootX2.getChildren().addAll(labelRootX2,RootX2Field);
 
         vbox.getChildren().addAll(labelEnterCoefficients,hboxACoeff,hboxBCoeff,hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);
         root.getChildren().addAll(hboxEquation,vbox);
