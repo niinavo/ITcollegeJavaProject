@@ -55,19 +55,19 @@ public class QuadraticEquationCalculator {
         Label aCoeff = new Label("a = ");
         aCoeff.setFont(new Font("Lucida Sans", 16));
         hboxACoeff.getChildren().add(aCoeff);
-        hboxACoeff.getChildren().add(this.coefficientA);
+        hboxACoeff.getChildren().add(coefficientA);
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
         bCoeff.setFont(new Font("Lucida Sans", 16));
         hboxBCoeff.getChildren().addAll(bCoeff);
-        hboxBCoeff.getChildren().add(this.coefficientB);
+        hboxBCoeff.getChildren().add(coefficientB);
 
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
         cCoeff.setFont(new Font("Lucida Sans", 16));
         hboxCCoeff.getChildren().addAll(cCoeff);
-        hboxCCoeff.getChildren().add(this.coefficientC);
+        hboxCCoeff.getChildren().add(coefficientC);
 
         HBox hboxRootsFormula=new HBox(15);
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
