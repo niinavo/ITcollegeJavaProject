@@ -50,7 +50,7 @@ public class QuadraticEquationCalculator {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
         Scene scene=new Scene(root,700,400);
-        scene.setFill(Color.web("#F8F8F8"));
+        scene.setFill(Color.web("#D6EBF2"));
         //root.setStyle("-fx-background-color: #F8F8F8;");
 
         VBox vbox = new VBox();
