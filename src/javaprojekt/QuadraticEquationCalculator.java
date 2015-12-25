@@ -1,21 +1,17 @@
 package javaprojekt;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -42,92 +38,102 @@ public class QuadraticEquationCalculator {
     /** TextField for calculated solution x2 of equation */
     TextField rootX2=new TextField();
 
-    QuadraticEquationCalculator() {
+    QuadraticEquationCalculator(){
         setupScene();
     }
 
     private void setupScene() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
-        Scene scene=new Scene(root,700,400);
+        Scene scene=new Scene(root,670,500);
         scene.setFill(Color.web("#D6EBF2"));
-        //root.setStyle("-fx-background-color: #F8F8F8;");
 
-        VBox vbox = new VBox();
-        vbox.setStyle("-fx-font: 16 arial; -fx-font-weight: normal");
-        vbox.setSpacing(20);
-        vbox.setPadding(new Insets(40, 0, 0, 10));
-        vbox.setAlignment(Pos.BOTTOM_LEFT);
+        VBox vbox = new VBox(15);
+        vbox.setStyle("-fx-font: 20 arial; -fx-font-weight: normal");
+        vbox.setPadding(new Insets(0, 0, 0, 10));
+        //vbox.setAlignment(Pos.BOTTOM_LEFT);
+
+        HBox hboxTitle=new HBox();
+        hboxTitle.setPadding(new Insets(10,0,0,0));
+        hboxTitle.setAlignment(Pos.CENTER);
+        Label labelTitle=new Label("QUADRATIC EQUATION SOLVER");
+        labelTitle.setStyle("-fx-font: 26 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+        hboxTitle.getChildren().add(labelTitle);
 
         HBox hboxEquation=new HBox(15);
-        hboxEquation.setPadding(new Insets(10,0,0,10));
+        hboxEquation.setPadding(new Insets(50,0,30,10));
         hboxEquation.setAlignment(Pos.CENTER_LEFT);
         Label labelQuadraticEquation=new Label("Quadratic equation:");
-        labelQuadraticEquation.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
-        //labelQuadraticEquation.setTextFill(Color.web("#191970"));
-        //labelQuadraticEquation.setTextFill(Color.web("#000000"));
+        labelQuadraticEquation.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         ImageView imv1 = new ImageView();
         Image imageQuadraticEquation = new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
         imv1.setImage(imageQuadraticEquation);
         hboxEquation.getChildren().addAll(labelQuadraticEquation,imv1);
 
-        Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation (coefficient a is not equal to 0):");
-        labelEnterCoefficients.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
-        //labelEnterCoefficients.setTextFill(Color.web("#191970"));
+        HBox hboxEnterCoefficients=new HBox();
+        hboxEnterCoefficients.setPadding(new Insets(30,0,0,0));
+        Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation (coefficient a \u2260 0):");
+        labelEnterCoefficients.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+        hboxEnterCoefficients.getChildren().add(labelEnterCoefficients);
+
         HBox hboxACoeff=new HBox(5);
-        hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
+        //hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
         Label aCoeff = new Label("a = ");
-        aCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
-        //aCoeff.setTextFill(Color.web("#191970"));
+        aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxACoeff.getChildren().add(aCoeff);
         hboxACoeff.getChildren().add(coefficientA);
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
-        bCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        bCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxBCoeff.getChildren().addAll(bCoeff);
         hboxBCoeff.getChildren().add(coefficientB);
 
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
-        cCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        cCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxCCoeff.getChildren().addAll(cCoeff);
         hboxCCoeff.getChildren().add(coefficientC);
 
         HBox hboxRootsFormula=new HBox(25);
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
         Label labelEquationRoots=new Label("Roots of quadratic equation:");
-        labelEquationRoots.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        labelEquationRoots.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         ImageView imv2=new ImageView();
         Image imageQuadraticEquationRoots=new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
         imv2.setImage(imageQuadraticEquationRoots);
+        hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2);
+
+        HBox hboxEquationRootX1=new HBox(5);
+        Label labelRootX1 = new Label("x1 = ");
+        labelRootX1.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+        rootX1.setEditable(false);
+        rootX1.setDisable(true);
         Button calculateRootsButton=new Button("Calculate roots");
-        calculateRootsButton.setStyle("-fx-font: 18 arial; -fx-base: #66ccff;");
-        //calculateRootsButton.setFont(new Font("Lucida Sans", 16));
+        calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;");
+
         calculateRootsButton.setOnAction(event1 -> {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
             final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
             rootX1.setText(solutions.get(0).toPlainString());
+            rootX1.setDisable(false);
             rootX2.setText(solutions.get(1).toPlainString());
+            rootX2.setDisable(false);
 
         });
-        hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2,calculateRootsButton);
-
-        HBox hboxEquationRootX1=new HBox(5);
-        Label labelRootX1 = new Label("x1 = ");
-        labelRootX1.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
-        rootX1.setEditable(false);
-        hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1);
+        hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1,new Label("   "),calculateRootsButton);
 
         HBox hboxEquationRootX2=new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
-        labelRootX2.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
+        rootX2.setDisable(true);
         hboxEquationRootX2.getChildren().addAll(labelRootX2,rootX2);
 
-        vbox.getChildren().addAll(labelEnterCoefficients,hboxACoeff,hboxBCoeff,hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);
+        vbox.getChildren().addAll(hboxTitle,hboxEnterCoefficients,hboxACoeff,
+                hboxBCoeff, hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);
         root.getChildren().addAll(hboxEquation,vbox);
 
         stage.setScene(scene);
@@ -154,8 +160,5 @@ public class QuadraticEquationCalculator {
         }
         return stringConvertedToNumber;
     }
-
-
-
 
 }

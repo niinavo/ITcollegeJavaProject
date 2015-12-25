@@ -13,12 +13,6 @@ import java.util.List;
 
 public class RootsOfQuadraticEquation {
 
-    /** Representation of two as BigDecimal. */
-    private static final BigDecimal TWO = new BigDecimal("2");
-
-    /** Representation of four as BigDecimal. */
-    private static final BigDecimal FOUR = new BigDecimal("4");
-
     /**
      * Calculate roots of quadratic equation a*x*x+b*x+c=0.
      * @param a Coefficient 'a' from a quadratic equation to be solved.
@@ -83,6 +77,7 @@ public class RootsOfQuadraticEquation {
         //if (a.compareTo(BigDecimal.ZERO)==0){
         //    throw new NumberFormatException("Denominator cannot be equal to zero");
         //}
+        BigDecimal TWO = new BigDecimal("2");
         return a.multiply(TWO);
     }
 
@@ -121,7 +116,8 @@ public class RootsOfQuadraticEquation {
      */
     private static BigDecimal calculateDiscriminant(
             final BigDecimal a, final BigDecimal b, final BigDecimal c){
-        BigDecimal discriminant;
+        final BigDecimal discriminant;
+        BigDecimal FOUR = new BigDecimal("4");
         final BigDecimal subtrahend=a.multiply(c).multiply(FOUR);
         discriminant=b.pow(2).subtract(subtrahend);
         return discriminant;
