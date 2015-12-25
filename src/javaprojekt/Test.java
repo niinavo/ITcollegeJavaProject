@@ -34,7 +34,12 @@ public class Test {
         System.out.println("denominator with substraction="+calculateDenominatorWithSubstraction(a,b,c));
         System.out.println("solutions="+calculateSolutionsOfEquation(a,b,c));
     }
-
+    /**
+     * Converts String to BigDecimal.
+     *@param str String to be converted to BigDecimal.
+     *@return The BigDecimal corresponding to the provided String or Double.NaN
+     *     if the conversion cannot be performed.
+     */
     private static BigDecimal convertStringToBigDecimal(String str)
     {
         BigDecimal stringConvertedToNumber;

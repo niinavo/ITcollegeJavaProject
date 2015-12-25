@@ -1,5 +1,7 @@
 package javaprojekt;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -15,6 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * JavaFX application for solving quadratic equations a*x*x+b*x+c=0
@@ -32,6 +37,10 @@ public class QuadraticEquationCalculator {
     TextField coefficientB=new TextField();
     /** TextField for entering coefficient c of quadratic equation. */
     TextField coefficientC=new TextField();
+    /** TextFiled for calculated solution of equation x1*/
+    TextField rootX1=new TextField();
+    /** TextFiled for calculated solution of equation x2*/
+    TextField rootX2=new TextField();
 
     QuadraticEquationCalculator() {
         setupScene();
@@ -85,19 +94,30 @@ public class QuadraticEquationCalculator {
         imv2.setImage(imageQuadraticEquationRoots);
         Button calculateRootsButton=new Button("Calculate roots");
         calculateRootsButton.setFont(new Font("Lucida Sans", 16));
+        calculateRootsButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        final BigDecimal a=convertStringToBigDecimal(coefficientA.getText());
+                        final BigDecimal b=convertStringToBigDecimal(coefficientB.getText());
+                        final BigDecimal c=convertStringToBigDecimal(coefficientC.getText());
+                        final List<BigDecimal> solutions=RootsOfQuadraticEquation.calculateSolutionsOfEquation(a,b,c);
+                        rootX1.setText(solutions.get(0).toPlainString());
+                        rootX2.setText(solutions.get(1).toPlainString());
+                    }
+                }
+        );
         hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2,calculateRootsButton);
 
         HBox hboxEquationRootX1=new HBox(5);
         Label labelRootX1 = new Label("x1 = ");
         labelRootX1.setFont(new Font("Lucida Sans", 16));
-        TextField RootX1Field=new TextField();
-        hboxEquationRootX1.getChildren().addAll(labelRootX1,RootX1Field);
+        hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1);
 
         HBox hboxEquationRootX2=new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setFont(new Font("Lucida Sans", 16));
-        TextField RootX2Field=new TextField();
-        hboxEquationRootX2.getChildren().addAll(labelRootX2,RootX2Field);
+        hboxEquationRootX2.getChildren().addAll(labelRootX2,rootX2);
 
         vbox.getChildren().addAll(labelEnterCoefficients,hboxACoeff,hboxBCoeff,hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);
         root.getChildren().addAll(hboxEquation,vbox);
@@ -105,6 +125,26 @@ public class QuadraticEquationCalculator {
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> System.exit(0));
+    }
+
+    /**
+     * Converts String to BigDecimal.
+     *@param str String to be converted to BigDecimal.
+     *@return The BigDecimal corresponding to the provided String or Double.NaN
+     *     if the conversion cannot be performed.
+     */
+    private static BigDecimal convertStringToBigDecimal(String str)
+    {
+        BigDecimal stringConvertedToNumber;
+        try
+        {
+            stringConvertedToNumber = new BigDecimal(str);
+        }
+        catch (NumberFormatException nfe)
+        {
+            stringConvertedToNumber = null;
+        }
+        return stringConvertedToNumber;
     }
 
 
