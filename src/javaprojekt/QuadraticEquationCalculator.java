@@ -45,7 +45,7 @@ public class QuadraticEquationCalculator {
     private void setupScene() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
-        Scene scene=new Scene(root,670,500);
+        Scene scene=new Scene(root,600,470);
         scene.setFill(Color.web("#D6EBF2"));
 
         VBox vbox = new VBox(15);
@@ -110,7 +110,7 @@ public class QuadraticEquationCalculator {
         rootX1.setEditable(false);
         rootX1.setDisable(true);
         Button calculateRootsButton=new Button("Calculate roots");
-        calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;");
+        calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
 
         calculateRootsButton.setOnAction(event1 -> {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
@@ -147,7 +147,7 @@ public class QuadraticEquationCalculator {
      *@return The BigDecimal corresponding to the provided String or Double.NaN
      *     if the conversion cannot be performed.
      */
-    private static BigDecimal convertStringToBigDecimal(String str)
+    public static BigDecimal convertStringToBigDecimal(String str)
     {
         BigDecimal stringConvertedToNumber;
         try

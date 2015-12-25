@@ -77,8 +77,7 @@ public class RootsOfQuadraticEquation {
         //if (a.compareTo(BigDecimal.ZERO)==0){
         //    throw new NumberFormatException("Denominator cannot be equal to zero");
         //}
-        BigDecimal TWO = new BigDecimal("2");
-        return a.multiply(TWO);
+        return a.multiply(QuadraticEquationCalculator.convertStringToBigDecimal("2"));
     }
 
     /**
@@ -117,8 +116,7 @@ public class RootsOfQuadraticEquation {
     private static BigDecimal calculateDiscriminant(
             final BigDecimal a, final BigDecimal b, final BigDecimal c){
         final BigDecimal discriminant;
-        BigDecimal FOUR = new BigDecimal("4");
-        final BigDecimal subtrahend=a.multiply(c).multiply(FOUR);
+        final BigDecimal subtrahend=a.multiply(c).multiply(QuadraticEquationCalculator.convertStringToBigDecimal("4"));
         discriminant=b.pow(2).subtract(subtrahend);
         return discriminant;
     }
