@@ -37,9 +37,9 @@ public class QuadraticEquationCalculator {
     TextField coefficientB=new TextField();
     /** TextField for entering coefficient c of quadratic equation. */
     TextField coefficientC=new TextField();
-    /** TextFiled for calculated solution of equation x1*/
+    /** TextField for calculated solution x1 of equation*/
     TextField rootX1=new TextField();
-    /** TextFiled for calculated solution of equation x2*/
+    /** TextField for calculated solution x2 of equation */
     TextField rootX2=new TextField();
 
     QuadraticEquationCalculator() {
@@ -49,74 +49,82 @@ public class QuadraticEquationCalculator {
     private void setupScene() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
-        Scene scene=new Scene(root,600,300, Color.WHITE);
+        Scene scene=new Scene(root,700,400);
+        scene.setFill(Color.web("#F8F8F8"));
+        //root.setStyle("-fx-background-color: #F8F8F8;");
 
         VBox vbox = new VBox();
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(30, 0, 0, 10));
+        vbox.setStyle("-fx-font: 16 arial; -fx-font-weight: normal");
+        vbox.setSpacing(20);
+        vbox.setPadding(new Insets(40, 0, 0, 10));
+        vbox.setAlignment(Pos.BOTTOM_LEFT);
 
         HBox hboxEquation=new HBox(15);
         hboxEquation.setPadding(new Insets(10,0,0,10));
         hboxEquation.setAlignment(Pos.CENTER_LEFT);
         Label labelQuadraticEquation=new Label("Quadratic equation:");
-        labelQuadraticEquation.setFont(new Font("Lucida Sans", 16));
+        labelQuadraticEquation.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        //labelQuadraticEquation.setTextFill(Color.web("#191970"));
+        //labelQuadraticEquation.setTextFill(Color.web("#000000"));
         ImageView imv1 = new ImageView();
         Image imageQuadraticEquation = new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
         imv1.setImage(imageQuadraticEquation);
         hboxEquation.getChildren().addAll(labelQuadraticEquation,imv1);
 
         Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation (coefficient a is not equal to 0):");
-        labelEnterCoefficients.setFont(new Font("Lucida Sans", 16));
+        labelEnterCoefficients.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        //labelEnterCoefficients.setTextFill(Color.web("#191970"));
         HBox hboxACoeff=new HBox(5);
+        hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
         Label aCoeff = new Label("a = ");
-        aCoeff.setFont(new Font("Lucida Sans", 16));
+        aCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        //aCoeff.setTextFill(Color.web("#191970"));
         hboxACoeff.getChildren().add(aCoeff);
         hboxACoeff.getChildren().add(coefficientA);
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
-        bCoeff.setFont(new Font("Lucida Sans", 16));
+        bCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
         hboxBCoeff.getChildren().addAll(bCoeff);
         hboxBCoeff.getChildren().add(coefficientB);
 
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
-        cCoeff.setFont(new Font("Lucida Sans", 16));
+        cCoeff.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
         hboxCCoeff.getChildren().addAll(cCoeff);
         hboxCCoeff.getChildren().add(coefficientC);
 
-        HBox hboxRootsFormula=new HBox(15);
+        HBox hboxRootsFormula=new HBox(25);
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
         Label labelEquationRoots=new Label("Roots of quadratic equation:");
-        labelEquationRoots.setFont(new Font("Lucida Sans", 16));
+        labelEquationRoots.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
         ImageView imv2=new ImageView();
         Image imageQuadraticEquationRoots=new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
         imv2.setImage(imageQuadraticEquationRoots);
         Button calculateRootsButton=new Button("Calculate roots");
-        calculateRootsButton.setFont(new Font("Lucida Sans", 16));
-        calculateRootsButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        final BigDecimal a=convertStringToBigDecimal(coefficientA.getText());
-                        final BigDecimal b=convertStringToBigDecimal(coefficientB.getText());
-                        final BigDecimal c=convertStringToBigDecimal(coefficientC.getText());
-                        final List<BigDecimal> solutions=RootsOfQuadraticEquation.calculateSolutionsOfEquation(a,b,c);
-                        rootX1.setText(solutions.get(0).toPlainString());
-                        rootX2.setText(solutions.get(1).toPlainString());
-                    }
-                }
-        );
+        calculateRootsButton.setStyle("-fx-font: 18 arial; -fx-base: #66ccff;");
+        //calculateRootsButton.setFont(new Font("Lucida Sans", 16));
+        calculateRootsButton.setOnAction(event1 -> {
+            final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
+            final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
+            final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
+            final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
+            rootX1.setText(solutions.get(0).toPlainString());
+            rootX2.setText(solutions.get(1).toPlainString());
+
+        });
         hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2,calculateRootsButton);
 
         HBox hboxEquationRootX1=new HBox(5);
         Label labelRootX1 = new Label("x1 = ");
-        labelRootX1.setFont(new Font("Lucida Sans", 16));
+        labelRootX1.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        rootX1.setEditable(false);
         hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1);
 
         HBox hboxEquationRootX2=new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
-        labelRootX2.setFont(new Font("Lucida Sans", 16));
+        labelRootX2.setStyle("-fx-font: 18 arial; -fx-font-weight: normal");
+        rootX2.setEditable(false);
         hboxEquationRootX2.getChildren().addAll(labelRootX2,rootX2);
 
         vbox.getChildren().addAll(labelEnterCoefficients,hboxACoeff,hboxBCoeff,hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);

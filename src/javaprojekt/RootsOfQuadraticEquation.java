@@ -20,7 +20,7 @@ public class RootsOfQuadraticEquation {
     private static final BigDecimal FOUR = new BigDecimal("4");
 
     /**
-     * Calculate roots of quadratic equation ax*x+b*x+c=0.
+     * Calculate roots of quadratic equation a*x*x+b*x+c=0.
      * @param a Coefficient 'a' from a quadratic equation to be solved.
      * @param b Coefficient 'b' from a quadratic equation to be solved.
      * @param c Coefficient 'c' from a quadratic equation to be solved.
