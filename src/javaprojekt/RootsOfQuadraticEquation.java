@@ -1,6 +1,7 @@
 package javaprojekt;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +26,22 @@ public class RootsOfQuadraticEquation {
     public static List<BigDecimal> calculateSolutionsOfEquation(
             final BigDecimal a, final BigDecimal b, final BigDecimal c){
         final List<BigDecimal> solutions=new ArrayList<>();
-        final BigDecimal rootX1=
-                calculateDenominatorWithAddition(a,b,c).
-                        divide(calculateDenominator(a), RoundingMode.HALF_UP);
-        solutions.add(rootX1);
-        final BigDecimal rootX2=
-                calculateDenominatorWithSubstraction(a, b, c).
-                        divide(calculateDenominator(a),RoundingMode.HALF_UP);
-        solutions.add(rootX2);
+        // checking if equation is not quadratic or linear
+        if (b.compareTo(BigDecimal.ZERO)==0 && a.compareTo(BigDecimal.ZERO)==0){
+            throw new NumberFormatException("at least one of coefficients of x terms must not be equal to 0");
+        // checking if equation is linear. In this case solution of equation is x1= -c/b.
+        } else if (a.compareTo(BigDecimal.ZERO)==0){
+            solutions.add(c.setScale(MathContext.DECIMAL64.getPrecision()).negate().divide(b,RoundingMode.HALF_UP));
+        } else {
+            final BigDecimal rootX1 =
+                    calculateDenominatorWithAddition(a, b, c).
+                            divide(calculateDenominator(a), RoundingMode.HALF_UP);
+            solutions.add(rootX1);
+            final BigDecimal rootX2 =
+                    calculateDenominatorWithSubstraction(a, b, c).
+                            divide(calculateDenominator(a), RoundingMode.HALF_UP);
+            solutions.add(rootX2);
+        }
         return solutions;
     }
 

@@ -72,7 +72,7 @@ public class QuadraticEquationCalculator {
 
         HBox hboxEnterCoefficients=new HBox();
         hboxEnterCoefficients.setPadding(new Insets(30,0,0,0));
-        Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation (coefficient a \u2260 0):");
+        Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation");
         labelEnterCoefficients.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxEnterCoefficients.getChildren().add(labelEnterCoefficients);
 
@@ -116,11 +116,26 @@ public class QuadraticEquationCalculator {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
-            final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
-            rootX1.setText(solutions.get(0).toPlainString());
-            rootX1.setDisable(false);
-            rootX2.setText(solutions.get(1).toPlainString());
-            rootX2.setDisable(false);
+            try {
+                final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
+                rootX1.setText(solutions.get(0).toPlainString());
+                rootX1.setDisable(false);
+                // checking if an equation has two solutions x1 and x2 (which can be equal to each other)
+                if (solutions.size()>1){
+                    rootX2.setText(solutions.get(1).toPlainString());
+                    rootX2.setDisable(false);
+                } else {
+                    rootX2.setText("-");
+                    rootX2.setDisable(true);
+                }
+            }
+            catch (NumberFormatException nfe){
+                rootX1.setText("-");
+                rootX1.setDisable(true);
+                rootX2.setText("-");
+                rootX2.setDisable(true);
+            }
+
 
         });
         hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1,new Label("   "),calculateRootsButton);
