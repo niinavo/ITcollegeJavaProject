@@ -1,5 +1,5 @@
-src/javaprojekt/CartesianPlot.java
 src/javaprojekt/Test.java
+src/javaprojekt/CartesianPlot.java
 out/
 *.iml
 .idea/
