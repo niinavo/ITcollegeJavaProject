@@ -12,7 +12,7 @@ import java.util.List;
  * if coefficients of equation 'a', 'b' and 'c' are given
  */
 
-public class Test {
+public class Test_ {
     /** Default precision used for specifying scale. */
     private static final int DEFAULT_PRECISION = MathContext.DECIMAL64.getPrecision();
 
@@ -23,8 +23,8 @@ public class Test {
     private static final BigDecimal FOUR = new BigDecimal("4");
 
     public static void main(String[] args) {
-        System.out.println(new BigDecimal("xx"));
-        System.out.println(convertStringToBigDecimall("//"));
+        //System.out.println(new BigDecimal("xx"));
+        //System.out.println(convertStringToBigDecimall("//"));
         BigDecimal a = convertStringToBigDecimall("1");
         BigDecimal b = convertStringToBigDecimall("-1");
         BigDecimal c = convertStringToBigDecimall("6");

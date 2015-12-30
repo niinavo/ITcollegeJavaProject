@@ -80,20 +80,17 @@ public class QuadraticEquationCalculator {
         //hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
         Label aCoeff = new Label("a = ");
         aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        hboxACoeff.getChildren().add(aCoeff);
-        hboxACoeff.getChildren().add(coefficientA);
+        hboxACoeff.getChildren().addAll(aCoeff,this.coefficientA);
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
         bCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        hboxBCoeff.getChildren().addAll(bCoeff);
-        hboxBCoeff.getChildren().add(coefficientB);
+        hboxBCoeff.getChildren().addAll(bCoeff,this.coefficientB);
 
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
         cCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        hboxCCoeff.getChildren().addAll(cCoeff);
-        hboxCCoeff.getChildren().add(coefficientC);
+        hboxCCoeff.getChildren().addAll(cCoeff,this.coefficientC);
 
         HBox hboxRootsFormula=new HBox(25);
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
@@ -116,6 +113,7 @@ public class QuadraticEquationCalculator {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
+
             //System.out.println("a="+a+"; b="+b+"; c="+c);
             //System.out.println("discriminant: "+RootsOfQuadraticEquation.calculateDiscriminant(a,b,c));
             //System.out.println("square root of discriminant: "+RootsOfQuadraticEquation.calculateRootOfDiscriminant(a,b,c));
