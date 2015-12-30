@@ -116,13 +116,13 @@ public class QuadraticEquationCalculator {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
-            System.out.println("a="+a+"; b="+b+"; c="+c);
-            System.out.println("discriminant: "+RootsOfQuadraticEquation.calculateDiscriminant(a,b,c));
-            System.out.println("square root of discriminant: "+RootsOfQuadraticEquation.calculateRootOfDiscriminant(a,b,c));
-            System.out.println("denominator: "+RootsOfQuadraticEquation.calculateDenominator(a));
-            System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithAddition(a,b,c));
-            System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithSubtraction(a,b,c));
-            System.out.println("solutions: "+RootsOfQuadraticEquation.calculateSolutionsOfEquation(a,b,c));
+            //System.out.println("a="+a+"; b="+b+"; c="+c);
+            //System.out.println("discriminant: "+RootsOfQuadraticEquation.calculateDiscriminant(a,b,c));
+            //System.out.println("square root of discriminant: "+RootsOfQuadraticEquation.calculateRootOfDiscriminant(a,b,c));
+            //System.out.println("denominator: "+RootsOfQuadraticEquation.calculateDenominator(a));
+            //System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithAddition(a,b,c));
+            //System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithSubtraction(a,b,c));
+            //System.out.println("solutions: "+RootsOfQuadraticEquation.calculateSolutionsOfEquation(a,b,c));
             try {
                 final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
                 rootX1.setText(solutions.get(0).toPlainString());

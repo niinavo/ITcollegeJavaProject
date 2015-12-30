@@ -23,16 +23,17 @@ public class Test {
     private static final BigDecimal FOUR = new BigDecimal("4");
 
     public static void main(String[] args) {
-        System.out.println(convertStringToBigDecimal("abd"));
-        BigDecimal a = convertStringToBigDecimal("1");
-        BigDecimal b = convertStringToBigDecimal("-1");
-        BigDecimal c = convertStringToBigDecimal("6");
-        System.out.println("discriminant="+calculateDiscriminant(a,b,c));
-        System.out.println("root of discriminant="+calculateRootOfDiscriminant(a,b,c));
-        System.out.println("denominator="+calculateDenominator(a));
-        System.out.println("denominator with addition="+calculateDenominatorWithAddition(a,b,c));
-        System.out.println("denominator with substraction="+calculateDenominatorWithSubstraction(a,b,c));
-        System.out.println("solutions="+calculateSolutionsOfEquation(a,b,c));
+        System.out.println(new BigDecimal("xx"));
+        System.out.println(convertStringToBigDecimall("//"));
+        BigDecimal a = convertStringToBigDecimall("1");
+        BigDecimal b = convertStringToBigDecimall("-1");
+        BigDecimal c = convertStringToBigDecimall("6");
+        //System.out.println("discriminant="+calculateDiscriminant(a,b,c));
+        //System.out.println("root of discriminant="+calculateRootOfDiscriminant(a,b,c));
+        //System.out.println("denominator="+calculateDenominator(a));
+        //System.out.println("denominator with addition="+calculateDenominatorWithAddition(a,b,c));
+        //System.out.println("denominator with substraction="+calculateDenominatorWithSubstraction(a,b,c));
+        //System.out.println("solutions="+calculateSolutionsOfEquation(a,b,c));
     }
     /**
      * Converts String to BigDecimal.
@@ -162,5 +163,19 @@ public class Test {
          discriminant=b.pow(2).subtract(subtrahend);
          return discriminant;
      }
+
+    public static BigDecimal convertStringToBigDecimall(String str)
+    {
+        BigDecimal stringConvertedToNumber;
+        try
+        {
+            stringConvertedToNumber = new BigDecimal(str);
+        }
+        catch (NumberFormatException nfe)
+        {
+            stringConvertedToNumber = null;
+        }
+        return stringConvertedToNumber;
+    }
 
 }
