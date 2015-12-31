@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -37,6 +38,9 @@ public class QuadraticEquationCalculator {
     TextField rootX1=new TextField();
     /** TextField for calculated solution x2 of equation */
     TextField rootX2=new TextField();
+    //final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
+    //final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
+    //final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
 
     QuadraticEquationCalculator(){
         setupScene();
@@ -80,7 +84,14 @@ public class QuadraticEquationCalculator {
         //hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
         Label aCoeff = new Label("a = ");
         aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        hboxACoeff.getChildren().addAll(aCoeff,this.coefficientA);
+        Button clear=new Button("Clear");
+        clear.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        hboxACoeff.getChildren().addAll(aCoeff,this.coefficientA,clear);
+        clear.setOnAction(event2 -> {
+            coefficientA.clear();
+            coefficientB.clear();
+            coefficientC.clear();
+        });
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
@@ -113,6 +124,20 @@ public class QuadraticEquationCalculator {
             final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
+            if (a==null){
+                coefficientA.setText("Please enter integer!");
+                coefficientA.setStyle("-fx-text-inner-color: red;");
+            }
+            if (b==null){
+                coefficientB.setText("Please enter integer!");
+                coefficientB.setStyle("-fx-text-inner-color: red;");
+            }
+            if (c==null){
+                coefficientC.setText("Please enter integer!");
+                coefficientC.setStyle("-fx-text-inner-color: red;");
+                return;
+            }
+
 
             //System.out.println("a="+a+"; b="+b+"; c="+c);
             //System.out.println("discriminant: "+RootsOfQuadraticEquation.calculateDiscriminant(a,b,c));
