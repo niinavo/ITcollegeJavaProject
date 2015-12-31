@@ -38,13 +38,29 @@ public class QuadraticEquationCalculator {
     TextField rootX1=new TextField();
     /** TextField for calculated solution x2 of equation */
     TextField rootX2=new TextField();
-    //final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
-    //final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
-    //final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
 
     QuadraticEquationCalculator(){
         setupScene();
     }
+    //BuildTitleAndEquationBox();
+    //buildInputBox();
+    //buildOutputBox();
+    //buildOverallVerticalLayout();
+    /**
+     * Build overall presentation of application.
+     *
+     * @return Vertical box representing input and output of application.
+     */
+   // private VBox buildOverallVerticalLayout()
+    //{
+    //    final VBox vbox = new VBox();
+    //    vbox.setSpacing(25);
+    //    vbox.getChildren().add(buildEquationsBox());
+    //    vbox.getChildren().add(buildEntryBox());
+    //    vbox.getChildren().add(buildOutputBox());
+    //    vbox.setAlignment(Pos.CENTER);
+    //    return vbox;
+    //}
 
     private void setupScene() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
@@ -84,23 +100,31 @@ public class QuadraticEquationCalculator {
         //hboxEquation.setAlignment(Pos.BOTTOM_LEFT);
         Label aCoeff = new Label("a = ");
         aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+
+
         Button clear=new Button("Clear");
         clear.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        coefficientA.setPrefSize(251.0,37.0);
         hboxACoeff.getChildren().addAll(aCoeff,this.coefficientA,clear);
         clear.setOnAction(event2 -> {
             coefficientA.clear();
             coefficientB.clear();
             coefficientC.clear();
+            coefficientA.setStyle("-fx-text-inner-color: black;");
+            coefficientB.setStyle("-fx-text-inner-color: black;");
+            coefficientC.setStyle("-fx-text-inner-color: black;");
         });
 
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
         bCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+        coefficientB.setPrefSize(251.0,37.0);
         hboxBCoeff.getChildren().addAll(bCoeff,this.coefficientB);
 
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
         cCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
+        coefficientC.setPrefSize(251.0,37.0);
         hboxCCoeff.getChildren().addAll(cCoeff,this.coefficientC);
 
         HBox hboxRootsFormula=new HBox(25);
@@ -125,16 +149,18 @@ public class QuadraticEquationCalculator {
             final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
             if (a==null){
-                coefficientA.setText("Please enter integer!");
-                coefficientA.setStyle("-fx-text-inner-color: red;");
+                coefficientA.setText("Please enter real number!");
+                coefficientA.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
             }
             if (b==null){
-                coefficientB.setText("Please enter integer!");
-                coefficientB.setStyle("-fx-text-inner-color: red;");
+                coefficientB.setText("Please enter real number!");
+                coefficientB.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
             }
             if (c==null){
-                coefficientC.setText("Please enter integer!");
-                coefficientC.setStyle("-fx-text-inner-color: red;");
+                coefficientC.setText("Please enter real number!");
+                coefficientC.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
+            }
+            if (a==null || b==null || c==null){
                 return;
             }
 
