@@ -1,4 +1,4 @@
-package javaprojekt;
+package TESTjavaprojekt;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -64,14 +64,27 @@ public class QuadraticEquationCalculator {
     private void setupScene() {
         stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group root=new Group();
+        root.getChildren().add(buildOverallVerticalLayout());
         Scene scene=new Scene(root,600,470);
         scene.setFill(Color.web("#D6EBF2"));
 
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(event -> System.exit(0));
+    }
+
+    public VBox buildOverallVerticalLayout(){
         VBox vbox = new VBox(15);
         vbox.setStyle("-fx-font: 20 arial; -fx-font-weight: normal");
         vbox.setPadding(new Insets(0, 0, 0, 10));
-        //vbox.setAlignment(Pos.BOTTOM_LEFT);
+        vbox.getChildren().addAll(buildTitleBox(),buildEnterCoefficientsBox(),buildAcoeffBox(),
+                buildBCoeffBox(),buildBCoeffBox(),buildRootsFormula(),buildEquationRootX1(),buildEquationRootX2());
 
+        return vbox;
+    };
+
+
+    public HBox buildTitleBox(){
         HBox hboxTitle=new HBox();
         hboxTitle.setPadding(new Insets(10,0,0,0));
         hboxTitle.setAlignment(Pos.CENTER);
@@ -79,6 +92,10 @@ public class QuadraticEquationCalculator {
         labelTitle.setStyle("-fx-font: 26 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxTitle.getChildren().add(labelTitle);
 
+        return hboxTitle;
+    }
+
+    public HBox buildEquation(){
         HBox hboxEquation=new HBox(15);
         hboxEquation.setPadding(new Insets(50,0,30,10));
         hboxEquation.setAlignment(Pos.CENTER_LEFT);
@@ -88,44 +105,46 @@ public class QuadraticEquationCalculator {
         Image imageQuadraticEquation = new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
         imv1.setImage(imageQuadraticEquation);
         hboxEquation.getChildren().addAll(labelQuadraticEquation,imv1);
-
+        return hboxEquation;
+    }
+    public HBox buildEnterCoefficientsBox(){
         HBox hboxEnterCoefficients=new HBox();
         hboxEnterCoefficients.setPadding(new Insets(30,0,0,0));
         Label labelEnterCoefficients=new Label("Enter coefficients of quadratic equation");
         labelEnterCoefficients.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxEnterCoefficients.getChildren().add(labelEnterCoefficients);
-
+        return hboxEnterCoefficients;
+    }
+    public HBox buildAcoeffBox(){
         HBox hboxACoeff=new HBox(5);
         Label aCoeff = new Label("a = ");
         aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-
-
         Button clear=new Button("Clear");
         clear.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
         coefficientA.setPrefSize(251.0,37.0);
         hboxACoeff.getChildren().addAll(aCoeff,this.coefficientA,clear);
+        return hboxACoeff;
+    }
 
-        clear.setOnAction(event2 -> {
-            coefficientA.clear();
-            coefficientB.clear();
-            coefficientC.clear();
-            coefficientA.setStyle("-fx-text-inner-color: black;");
-            coefficientB.setStyle("-fx-text-inner-color: black;");
-            coefficientC.setStyle("-fx-text-inner-color: black;");
-        });
-
+    public HBox buildBCoeffBox(){
         HBox hboxBCoeff=new HBox(5);
         Label bCoeff = new Label("b = ");
         bCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         coefficientB.setPrefSize(251.0,37.0);
         hboxBCoeff.getChildren().addAll(bCoeff,this.coefficientB);
+        return hboxBCoeff;
+    }
 
+    public HBox buildCCoeffBox(){
         HBox hboxCCoeff=new HBox(5);
         Label cCoeff = new Label("c = ");
         cCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         coefficientC.setPrefSize(251.0,37.0);
         hboxCCoeff.getChildren().addAll(cCoeff,this.coefficientC);
+        return hboxCCoeff;
+    }
 
+    public HBox buildRootsFormula(){
         HBox hboxRootsFormula=new HBox(25);
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
         Label labelEquationRoots=new Label("Roots of quadratic equation:");
@@ -134,7 +153,9 @@ public class QuadraticEquationCalculator {
         Image imageQuadraticEquationRoots=new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
         imv2.setImage(imageQuadraticEquationRoots);
         hboxRootsFormula.getChildren().addAll(labelEquationRoots,imv2);
-
+        return hboxRootsFormula;
+    }
+    public HBox buildEquationRootX1(){
         HBox hboxEquationRootX1=new HBox(5);
         Label labelRootX1 = new Label("x1 = ");
         labelRootX1.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
@@ -142,74 +163,19 @@ public class QuadraticEquationCalculator {
         rootX1.setDisable(true);
         Button calculateRootsButton=new Button("Calculate roots");
         calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
-
-        calculateRootsButton.setOnAction(event1 -> {
-            final BigDecimal a = convertStringToBigDecimal(coefficientA.getText());
-            final BigDecimal b = convertStringToBigDecimal(coefficientB.getText());
-            final BigDecimal c = convertStringToBigDecimal(coefficientC.getText());
-            if (a==null){
-                coefficientA.setText("Please enter real number!");
-                coefficientA.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
-            }
-            if (b==null){
-                coefficientB.setText("Please enter real number!");
-                coefficientB.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
-            }
-            if (c==null){
-                coefficientC.setText("Please enter real number!");
-                coefficientC.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
-            }
-            if (a==null || b==null || c==null){
-                return;
-            }
-
-
-            //System.out.println("a="+a+"; b="+b+"; c="+c);
-            //System.out.println("discriminant: "+RootsOfQuadraticEquation.calculateDiscriminant(a,b,c));
-            //System.out.println("square root of discriminant: "+RootsOfQuadraticEquation.calculateRootOfDiscriminant(a,b,c));
-            //System.out.println("denominator: "+RootsOfQuadraticEquation.calculateDenominator(a));
-            //System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithAddition(a,b,c));
-            //System.out.println("numerator with addition: "+RootsOfQuadraticEquation.calculateNumeratorWithSubtraction(a,b,c));
-            //System.out.println("solutions: "+RootsOfQuadraticEquation.calculateSolutionsOfEquation(a,b,c));
-            try {
-                final List<BigDecimal> solutions = RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
-                rootX1.setText(solutions.get(0).toPlainString());
-                rootX1.setDisable(false);
-                // checking if an equation has two solutions x1 and x2 (which can be equal to each other)
-                if (solutions.size()>1){
-                    rootX2.setText(solutions.get(1).toPlainString());
-                    rootX2.setDisable(false);
-                } else {
-                    rootX2.setText("-");
-                    rootX2.setDisable(true);
-                }
-            }
-            catch (NumberFormatException nfe){
-                rootX1.setText("-");
-                rootX1.setDisable(true);
-                rootX2.setText("-");
-                rootX2.setDisable(true);
-            }
-
-
-        });
         hboxEquationRootX1.getChildren().addAll(labelRootX1,rootX1,new Label("   "),calculateRootsButton);
-
+        return hboxEquationRootX1;
+    }
+    public HBox buildEquationRootX2(){
         HBox hboxEquationRootX2=new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
         rootX2.setDisable(true);
         hboxEquationRootX2.getChildren().addAll(labelRootX2,rootX2);
-
-        vbox.getChildren().addAll(hboxTitle,hboxEnterCoefficients,hboxACoeff,
-                hboxBCoeff, hboxCCoeff,hboxRootsFormula,hboxEquationRootX1,hboxEquationRootX2);
-        root.getChildren().addAll(hboxEquation,vbox);
-
-        stage.setScene(scene);
-        stage.show();
-        stage.setOnCloseRequest(event -> System.exit(0));
+        return hboxEquationRootX2;
     }
+
 
     /**
      * Converts String to BigDecimal.
