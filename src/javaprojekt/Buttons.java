@@ -8,26 +8,24 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by user on 2.01.2016.
+ * Class for setting up actions of 2 buttons: button "Clear" and button "Calculate roots"
  */
 public class Buttons {
-    //QuadraticEquationCalculator calculator=new QuadraticEquationCalculator();
-    static Button clearButton;
-    static Button calculateRootsButton;
-
-    Buttons(){
-        QuadraticEquationCalculator calculator=new QuadraticEquationCalculator();
-        //TextField coefficientA_=this.coefficientA;
-        //setupClearButton_(coefficientA_,coefficientB_,
-        //        coefficientC_, rootX1_, rootX2_);
-    }
+    Button clearButton;
+    Button calculateRootsButton;
+    TextField coefficientA;
+    TextField coefficientB;
+    TextField coefficientC;
+    TextField rootX1;
+    TextField rootX2;
 
     /**
      * Setup button which clears contents of input and output textfields
      * and resets initial textfields style
      */
-    public static void setupClearButton_(TextField coefficientA,TextField coefficientB,
-                                         TextField coefficientC, TextField rootX1, TextField rootX2){
+    public void setupClearButton(TextField coefficientA,TextField coefficientB,
+                                         TextField coefficientC, TextField rootX1, TextField rootX2,Button clearButton){
+
         clearButton.setOnAction(event1 -> {
             coefficientA.clear();
             coefficientB.clear();
@@ -48,8 +46,8 @@ public class Buttons {
      * Setup button which calculates solutions of equation if
      * coefficients of equations are entered into input textfield
      */
-    public static void setupCalculateRootsButton_(TextField coefficientA,TextField coefficientB,
-                                           TextField coefficientC, TextField rootX1, TextField rootX2){
+    public void setupCalculateRootsButton(TextField coefficientA,TextField coefficientB,
+                                           TextField coefficientC, TextField rootX1, TextField rootX2,Button calculateRootsButton){
         calculateRootsButton.setOnAction(event2 -> {
             final BigDecimal a = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientB.getText());
