@@ -20,11 +20,12 @@ public class Buttons {
     TextField rootX2;
 
     /**
-     * Setup button which clears contents of input and output textfields
+     * Setup button "Clear" which clears contents of input and output textfields
      * and resets initial textfields style
      */
-    public void setupClearButton(TextField coefficientA,TextField coefficientB,
-                                         TextField coefficientC, TextField rootX1, TextField rootX2,Button clearButton){
+    public void setupClearButton(
+            TextField coefficientA,TextField coefficientB, TextField coefficientC,
+            TextField rootX1, TextField rootX2,Button clearButton){
 
         clearButton.setOnAction(event1 -> {
             coefficientA.clear();
@@ -43,25 +44,33 @@ public class Buttons {
     }
 
     /**
-     * Setup button which calculates solutions of equation if
+     * Setup button "Calculate roots" which calculates solutions of equation if
      * coefficients of equations are entered into input textfield
      */
-    public void setupCalculateRootsButton(TextField coefficientA,TextField coefficientB,
-                                           TextField coefficientC, TextField rootX1, TextField rootX2,Button calculateRootsButton){
+    public void setupCalculateRootsButton(
+            TextField coefficientA,TextField coefficientB, TextField coefficientC,
+            TextField rootX1, TextField rootX2,Button calculateRootsButton)
+    {
         calculateRootsButton.setOnAction(event2 -> {
             final BigDecimal a = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientA.getText());
             final BigDecimal b = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientB.getText());
             final BigDecimal c = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientC.getText());
+            //Checking if string entered into coefficient 'a' textfield cannot be converted to BigDecimal
+            //(i.e. checking if use entered non-number or decimal number in wrong format #,##)
             if (a==null){
-                coefficientA.setText("Please enter real number!");
+                coefficientA.setText("Please enter decimal number!");
                 coefficientA.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
             }
+            //Checking if string entered into coefficient 'b' textfield cannot be converted to BigDecimal
+            //(i.e. checking if use entered non-number or decimal number in wrong format #,##)
             if (b==null){
-                coefficientB.setText("Please enter real number!");
+                coefficientB.setText("Please enter decimal number!");
                 coefficientB.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
             }
+            //Checking if string entered into coefficient 'c' textfield cannot be converted to BigDecimal
+            //(i.e. checking if use entered non-number or decimal number in wrong format #,##)
             if (c==null){
-                coefficientC.setText("Please enter real number!");
+                coefficientC.setText("Please enter decimal number!");
                 coefficientC.setStyle("-fx-font: 18 arial; -fx-text-inner-color: red;");
             }
             if (a==null || b==null || c==null){
@@ -82,9 +91,9 @@ public class Buttons {
                 }
             }
             catch (NumberFormatException nfe){
-                rootX1.setText("-");
+                rootX1.setText("no roots");
                 rootX1.setDisable(true);
-                rootX2.setText("-");
+                rootX2.setText("no roots");
                 rootX2.setDisable(true);
             }
         });

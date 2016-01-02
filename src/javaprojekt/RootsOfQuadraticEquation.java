@@ -8,7 +8,8 @@ import java.util.List;
 /**
  * Class for calculating roots of quadratic equation (a*x*x+b*x+c=0)
  * (i. e. for implementing quadratic formula)
- * if coefficients of equation 'a', 'b' and 'c' are given
+ * if coefficients of equation 'a', 'b' and 'c' are given.
+ * Only case of real-number solutions (roots) of equation is considered.
  */
 
 public class RootsOfQuadraticEquation {
@@ -42,8 +43,8 @@ public class RootsOfQuadraticEquation {
      *     the same.
      */
     public static List<BigDecimal> calculateSolutionsOfEquation(
-            final BigDecimal a, final BigDecimal b, final BigDecimal c){
-        final List<BigDecimal> solutions=new ArrayList<>();
+            BigDecimal a, BigDecimal b, BigDecimal c){
+        List<BigDecimal> solutions=new ArrayList<>();
         // checking if equation is not quadratic or not linear
         if (b.compareTo(BigDecimal.ZERO)==0 && a.compareTo(BigDecimal.ZERO)==0){
             throw new NumberFormatException("at least one of coefficients of x terms must not be equal to 0");
@@ -51,11 +52,11 @@ public class RootsOfQuadraticEquation {
         } else if (a.compareTo(BigDecimal.ZERO)==0){
             solutions.add(c.negate().divide(b,20,BigDecimal.ROUND_UP));
         } else {
-            final BigDecimal rootX1 =
+            BigDecimal rootX1 =
                     calculateNumeratorWithAddition(a, b, c).
                             divide(calculateDenominator(a), 20,RoundingMode.HALF_UP);
             solutions.add(rootX1);
-            final BigDecimal rootX2 =
+            BigDecimal rootX2 =
                     calculateNumeratorWithSubtraction(a, b, c).
                             divide(calculateDenominator(a), 20,RoundingMode.HALF_UP);
             solutions.add(rootX2);
@@ -73,8 +74,8 @@ public class RootsOfQuadraticEquation {
      * @return Value of numerator in quadratic formula where terms are subtracted.
      * @throws NumberFormatException is thrown if no real solution is available.
      */
-    public static BigDecimal calculateNumeratorWithSubtraction(
-            final BigDecimal a, final BigDecimal b, final BigDecimal c){
+    private static BigDecimal calculateNumeratorWithSubtraction(
+            BigDecimal a, BigDecimal b, BigDecimal c){
         return b.negate().subtract(calculateRootOfDiscriminant(a,b,c));
     }
 
@@ -87,8 +88,8 @@ public class RootsOfQuadraticEquation {
      * @return Value of numerator in quadratic formula where terms are added.
      * @throws NumberFormatException is thrown if no real solution is available.
      */
-    public static BigDecimal calculateNumeratorWithAddition(
-            final BigDecimal a, final BigDecimal b, final BigDecimal c){
+    private static BigDecimal calculateNumeratorWithAddition(
+            BigDecimal a, BigDecimal b, BigDecimal c){
         return b.negate().add(calculateRootOfDiscriminant(a,b,c));
     }
 
@@ -103,14 +104,14 @@ public class RootsOfQuadraticEquation {
      * equation or if a number is encountered that cannot
      *    be handled with BigDecimal return type.
      */
-    public static BigDecimal calculateRootOfDiscriminant(
-            final BigDecimal a, final BigDecimal b, final BigDecimal c){
+    private static BigDecimal calculateRootOfDiscriminant(
+            BigDecimal a, BigDecimal b, BigDecimal c){
         BigDecimal sqrt;
         if (calculateDiscriminant(a,b,c).compareTo(BigDecimal.ZERO)<0){
             throw new NumberFormatException("Equation cannot be solved: no roots of equation");
         } else {
-            final double discriminantDouble=calculateDiscriminant(a,b,c).doubleValue();
-            final double sqrtDouble=Math.sqrt(discriminantDouble);
+            double discriminantDouble=calculateDiscriminant(a,b,c).doubleValue();
+            double sqrtDouble=Math.sqrt(discriminantDouble);
             sqrt=new BigDecimal(sqrtDouble);
         }
         return sqrt;
@@ -124,10 +125,10 @@ public class RootsOfQuadraticEquation {
      * @return The discriminant of quadratic equation if the three coefficients
      * of equation are provided.
      */
-    public static BigDecimal calculateDiscriminant(
-            final BigDecimal a, final BigDecimal b, final BigDecimal c){
-        final BigDecimal discriminant;
-        final BigDecimal subtrahend=a.multiply(convertStringToBigDecimal("4")).multiply(c);
+    private static BigDecimal calculateDiscriminant(
+            BigDecimal a, BigDecimal b, BigDecimal c){
+        BigDecimal discriminant;
+        BigDecimal subtrahend=a.multiply(convertStringToBigDecimal("4")).multiply(c);
         discriminant=b.pow(2).subtract(subtrahend);
         return discriminant;
     }
@@ -140,7 +141,7 @@ public class RootsOfQuadraticEquation {
      * @throws NumberFormatException is thrown if 0 is provided as coefficient 'a'
      *    because denominator cannot be zero.
      */
-    public static BigDecimal calculateDenominator(final BigDecimal a){
+    private static BigDecimal calculateDenominator(BigDecimal a){
         if (a.compareTo(BigDecimal.ZERO)==0){
             throw new NumberFormatException("Denominator cannot be equal to zero");
         }

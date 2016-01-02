@@ -14,46 +14,36 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 /**
  * JavaFX application for solving quadratic equations a*x*x+b*x+c=0
- * if coefficients a,b and c are entered.
+ * if coefficients a,b and c are entered. Only case of real-number solutions
+ * (roots) of equation is considered.
  *
  * @author Niina Voropajeva
  */
 
 
-public class QuadraticEquationCalculator {
+public class GUIQuadraticEquationCalculator {
     Stage stage = new Stage();
-    /**
-     * TextField for entering coefficient a of quadratic equation.
-     */
+    /** TextField for entering coefficient a of quadratic equation. */
     TextField coefficientA = new TextField();
-    /**
-     * TextField for entering coefficient b of quadratic equation.
-     */
+    /** TextField for entering coefficient b of quadratic equation. */
     TextField coefficientB = new TextField();
-    /**
-     * TextField for entering coefficient c of quadratic equation.
-     */
+    /** TextField for entering coefficient c of quadratic equation. */
     TextField coefficientC = new TextField();
-    /**
-     * TextField for calculated solution x1 of equation
-     */
+    /** TextField for calculated solution x1 of equation */
     TextField rootX1 = new TextField();
-    /**
-     * TextField for calculated solution x2 of equation
-     */
+    /** TextField for calculated solution x2 of equation */
     TextField rootX2 = new TextField();
 
+    /**Button  clears contents of input and output textfields
+     * and resets initial textfields style*/
     Button clearButton;
+    /** Button calculates solutions of equation if
+     * coefficients of equations are entered into input textfields */
     Button calculateRootsButton;
 
-    ;
-
-    QuadraticEquationCalculator() {
+    GUIQuadraticEquationCalculator() {
         setupScene();
         System.out.println("setupScene");
         Buttons buttons=new Buttons();
@@ -61,12 +51,12 @@ public class QuadraticEquationCalculator {
         buttons.setupCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,calculateRootsButton);
     }
 
-    public void setupScene() {
-        stage.setTitle("TEST QUADRATIC EQUATION SOLVER: JavaFX");
+    private void setupScene() {
+        stage.setTitle("QUADRATIC EQUATION SOLVER: JavaFX");
         Group group = new Group();
         group.getChildren().add(buildOverallVerticalLayout());
 
-        Scene scene = new Scene(group, 600, 470);
+        Scene scene = new Scene(group, 600, 500);
         scene.setFill(Color.web("#D6EBF2"));
 
         stage.setScene(scene);
@@ -79,7 +69,7 @@ public class QuadraticEquationCalculator {
      *
      * @return Vertical box representing input and output of application.
      */
-    public VBox buildOverallVerticalLayout() {
+    private VBox buildOverallVerticalLayout() {
         VBox vbox = new VBox(13);
         vbox.setStyle("-fx-font: 20 arial; -fx-font-weight: normal");
         vbox.setPadding(new Insets(0, 0, 0, 15));
@@ -88,7 +78,11 @@ public class QuadraticEquationCalculator {
         return vbox;
     }
 
-    public HBox buildTitleBox() {
+    /**
+     * Provide a read-only horizontal box with title of application "QUADRATIC EQUATION SOLVER"
+     * @return Horizontal box with title of application "QUADRATIC EQUATION SOLVER"
+     */
+    private HBox buildTitleBox() {
         HBox hboxTitle = new HBox();
         hboxTitle.setPadding(new Insets(10, 0, 0, 0));
         hboxTitle.setAlignment(Pos.CENTER);
@@ -98,68 +92,102 @@ public class QuadraticEquationCalculator {
         return hboxTitle;
     }
 
-    public HBox buildEquation() {
+    /**
+     * Provide a read-only horizontal box with text "Quadratic equation:" and quadratic equation
+     * @return Horizontal box with text "Quadratic equation:" and quadratic equation
+     */
+    private HBox buildEquation() {
         HBox hboxEquation = new HBox(15);
         hboxEquation.setAlignment(Pos.CENTER_LEFT);
         Label labelQuadraticEquation = new Label("Quadratic equation:");
         labelQuadraticEquation.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         ImageView imv1 = new ImageView();
-        Image imageQuadraticEquation = new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
+        Image imageQuadraticEquation = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
         imv1.setImage(imageQuadraticEquation);
         hboxEquation.getChildren().addAll(labelQuadraticEquation, imv1);
         return hboxEquation;
     }
 
-    public HBox buildEnterCoefficientsBox() {
+    /**
+     * Provide a horizontal box with text "Enter coefficients of quadratic equation"
+     * @return Horizontal box with text "Enter coefficients of quadratic equation"
+     */
+    private HBox buildEnterCoefficientsBox() {
         HBox hboxEnterCoefficients = new HBox();
-        Label labelEnterCoefficients = new Label("Enter coefficients of quadratic equation");
+        Label labelEnterCoefficients = new Label("Enter coefficients of quadratic equation" +
+                "\n (integers or decimal numbers #.##):");
         labelEnterCoefficients.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         hboxEnterCoefficients.getChildren().add(labelEnterCoefficients);
         return hboxEnterCoefficients;
     }
 
-    public HBox buildAcoeffBox() {
+    /**
+     * Provide a horizontal box with text "a=" and textfield for entering coefficient a of equation
+     * @return Horizontal box with text "a=" and textfield for entering coefficient a of equation
+     */
+    private HBox buildAcoeffBox() {
         HBox hboxACoeff = new HBox(5);
         Label aCoeff = new Label("a = ");
         aCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        coefficientA.setPrefSize(251.0, 37.0);
+        coefficientA.setPrefSize(260.0, 37.0);
         hboxACoeff.getChildren().addAll(aCoeff, this.coefficientA);
         return hboxACoeff;
     }
 
-    public HBox buildBCoeffBox() {
+    /**
+     * Provide a horizontal box with text "b=" and textfield for entering coefficient b of equation
+     * @return Horizontal box with text "b=" and textfield for entering coefficient b of equation
+     */
+    private HBox buildBCoeffBox() {
         HBox hboxBCoeff = new HBox(5);
         Label bCoeff = new Label("b = ");
         bCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        coefficientB.setPrefSize(251.0, 37.0);
+        coefficientB.setPrefSize(260.0, 37.0);
         hboxBCoeff.getChildren().addAll(bCoeff, this.coefficientB);
         return hboxBCoeff;
     }
 
-    public HBox buildCCoeffBox() {
+    /**
+     * Provide a horizontal box with text "c=", textfield for entering coefficient c of equation
+     * and button "clear"
+     * @return Horizontal box with text "c=", textfield for entering coefficient c of equation
+     */
+    private HBox buildCCoeffBox() {
         HBox hboxCCoeff = new HBox(5);
         Label cCoeff = new Label("c = ");
         cCoeff.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        coefficientC.setPrefSize(251.0, 37.0);
+        coefficientC.setPrefSize(260.0, 37.0);
         clearButton = new Button("Clear");
         clearButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
         hboxCCoeff.getChildren().addAll(cCoeff, this.coefficientC, new Label("   "), clearButton);
         return hboxCCoeff;
     }
 
-    public HBox buildRootsFormula() {
+    /**
+     * Provide a read-only horizontal box with text "Roots of quadratic equation:"
+     * and expession of roots of quadratic equation (i.e. quadratic formula)
+     * @return Horizontal box with text "Roots of quadratic equation:"
+     * and expession of roots of quadratic equation (i.e. quadratic formula)
+     */
+    private HBox buildRootsFormula() {
         HBox hboxRootsFormula = new HBox(25);
-        hboxRootsFormula.setAlignment(Pos.CENTER);
+        hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
         Label labelEquationRoots = new Label("Roots of quadratic equation:");
         labelEquationRoots.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         ImageView imv2 = new ImageView();
-        Image imageQuadraticEquationRoots = new Image(QuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
+        Image imageQuadraticEquationRoots = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
         imv2.setImage(imageQuadraticEquationRoots);
         hboxRootsFormula.getChildren().addAll(labelEquationRoots, imv2);
         return hboxRootsFormula;
     }
 
-    public HBox buildEquationRootX1() {
+    /**
+     * Provide a horizontal box with text "x1=", textfield for calculated root x1 of equation
+     * and button "calculate roots"
+     * @return Horizontal box with text "x1=", textfield for calculated root x1 of equation
+     * and button "calculate roots"
+     */
+    private HBox buildEquationRootX1() {
         HBox hboxEquationRootX1 = new HBox(5);
         Label labelRootX1 = new Label("x1 = ");
         labelRootX1.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
@@ -171,7 +199,13 @@ public class QuadraticEquationCalculator {
         return hboxEquationRootX1;
     }
 
-    public HBox buildEquationRootX2() {
+    /**
+     * Provide a horizontal box with text "x2=", textfield for calculated root x1 of equation
+     * and button "calculate roots"
+     * @return Horizontal box with text "x2=", textfield for calculated root x1 of equation
+     * and button "calculate roots"
+     */
+    private HBox buildEquationRootX2() {
         HBox hboxEquationRootX2 = new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
@@ -181,4 +215,3 @@ public class QuadraticEquationCalculator {
         return hboxEquationRootX2;
     }
 }
-
