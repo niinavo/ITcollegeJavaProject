@@ -14,6 +14,25 @@ import java.util.List;
 public class RootsOfQuadraticEquation {
 
     /**
+     * Converts String to BigDecimal.
+     *@param str String to be converted to BigDecimal.
+     *@return The BigDecimal corresponding to the provided String or Double.NaN
+     *     if the conversion cannot be performed.
+     */
+    public static BigDecimal convertStringToBigDecimal(String str)
+    {
+        BigDecimal stringConvertedToNumber;
+        try
+        {
+            stringConvertedToNumber = new BigDecimal(str);
+        }
+        catch (NumberFormatException nfe)
+        {
+            stringConvertedToNumber = null;
+        }
+        return stringConvertedToNumber;
+    }
+    /**
      * Calculate roots of quadratic equation a*x*x+b*x+c=0.
      * @param a Coefficient 'a' from a quadratic equation to be solved.
      * @param b Coefficient 'b' from a quadratic equation to be solved.
@@ -108,7 +127,7 @@ public class RootsOfQuadraticEquation {
     public static BigDecimal calculateDiscriminant(
             final BigDecimal a, final BigDecimal b, final BigDecimal c){
         final BigDecimal discriminant;
-        final BigDecimal subtrahend=a.multiply(QuadraticEquationCalculator.convertStringToBigDecimal("4")).multiply(c);
+        final BigDecimal subtrahend=a.multiply(convertStringToBigDecimal("4")).multiply(c);
         discriminant=b.pow(2).subtract(subtrahend);
         return discriminant;
     }
@@ -125,6 +144,6 @@ public class RootsOfQuadraticEquation {
         if (a.compareTo(BigDecimal.ZERO)==0){
             throw new NumberFormatException("Denominator cannot be equal to zero");
         }
-        return a.multiply(QuadraticEquationCalculator.convertStringToBigDecimal("2"));
+        return a.multiply(convertStringToBigDecimal("2"));
     }
 }
