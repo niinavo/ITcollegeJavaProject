@@ -48,16 +48,16 @@ public class RootsOfQuadraticEquation {
         // checking if equation is not quadratic or not linear
         if (b.compareTo(BigDecimal.ZERO)==0 && a.compareTo(BigDecimal.ZERO)==0){
             throw new NumberFormatException("at least one of coefficients of x terms must not be equal to 0");
-        // checking if equation is linear. In this case solution of equation is x1= -c/b.
+        // checking if equation is linear (). In this case solution of equation is x1= -c/b.
         } else if (a.compareTo(BigDecimal.ZERO)==0){
             solutions.add(c.negate().divide(b,20,BigDecimal.ROUND_UP));
         } else {
             BigDecimal rootX1 =
-                    calculateNumeratorWithAddition(a, b, c).
+                    calculateNumeratorWithSubtraction(a, b, c).
                             divide(calculateDenominator(a), 20,RoundingMode.HALF_UP);
             solutions.add(rootX1);
             BigDecimal rootX2 =
-                    calculateNumeratorWithSubtraction(a, b, c).
+                    calculateNumeratorWithAddition(a, b, c).
                             divide(calculateDenominator(a), 20,RoundingMode.HALF_UP);
             solutions.add(rootX2);
         }

@@ -42,12 +42,14 @@ public class GUIQuadraticEquationCalculator {
     /** Button calculates solutions of equation if
      * coefficients of equations are entered into input textfields */
     Button calculateRootsButton;
+    Button setupChart;
 
     GUIQuadraticEquationCalculator() {
         setupScene();
         Buttons buttons=new Buttons();
         buttons.setupClearButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,clearButton);
         buttons.setupCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,calculateRootsButton);
+        //buttons.setupChartButton(setupChart);
     }
 
     private void setupScene() {
@@ -90,7 +92,7 @@ public class GUIQuadraticEquationCalculator {
         hboxTitle.getChildren().add(labelTitle);
         return hboxTitle;
     }
- 
+
     /**
      * Provide a read-only horizontal box with text "Quadratic equation:" and quadratic equation
      * @return Horizontal box with text "Quadratic equation:" and quadratic equation
@@ -208,7 +210,8 @@ public class GUIQuadraticEquationCalculator {
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
-        hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2);
+        Button setupChart=new Button("Chart");
+        hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2,setupChart);
         return hboxEquationRootX2;
     }
 }
