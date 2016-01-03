@@ -4,13 +4,13 @@ Tehtud Niina Voropajeva poolt IT Kolledži aine i200 Programmeerimise algkursus 
 
 #Projekti kirjeldus
 
-See projekt on abiks neile, kel tuleb (tihti) lahendada ruutvõrrandeid. 
+See projekt on abiks neile, kel tuleb lahendada ruutvõrrandeid. 
 
 
 #Kasutusjuhend
 
-1. Ruutvõrrand on kujul: a*x^2+b*x+c=0, ruutvõrrandi kordajad - a, b ja c - on täisarvud (üldjuhul võivad olla reaalarvud)
-2. Ruutvõrrandi reaalarvuliste lahendite - x1 ja x2 - leidmiseks tuleb sisestada võrrandi kordajad vastavatesse lahtritesse "a=", "b=", "c=" ja seejärel vajutada nuppule "Calculate roots".
+1. Ruutvõrrand on kujul: a*x^2+b*x+c=0, ruutvõrrandi kordajad - a, b ja c - on kümnendarvud (kümnendkoha eraldajaks on punkt).
+2. Ruutvõrrandi reaalarvuliste lahendite - x1 ja x2 - leidmiseks tuleb sisestada võrrandi kordajad vastavatesse lahtritesse "a=", "b=", "c=" ja seejärel vajutada nupule "Calculate roots".
 3. Arvutatud lahendite väärtused ilmuvad lahtritesse "x1=" ja "x2="
-4. Kui võrrandil puudub lahend/puuduvad lahendid, siis lahendi(te) lahtrisse ilmub "-".
+4. Kui võrrandil puuduvad lahendid, siis lahendite lahtrisse ilmub "no roots".
 5. Nupp "Clear" tühistab nii sisestatud kordajate kui ka arvutatud lahendite väärtused vastavates lahtrites.
