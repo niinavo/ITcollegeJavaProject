@@ -45,7 +45,6 @@ public class GUIQuadraticEquationCalculator {
 
     GUIQuadraticEquationCalculator() {
         setupScene();
-        System.out.println("setupScene");
         Buttons buttons=new Buttons();
         buttons.setupClearButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,clearButton);
         buttons.setupCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,calculateRootsButton);
@@ -192,7 +191,6 @@ public class GUIQuadraticEquationCalculator {
         Label labelRootX1 = new Label("x1 = ");
         labelRootX1.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX1.setEditable(false);
-        rootX1.setDisable(true);
         calculateRootsButton = new Button("Calculate roots");
         calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
         hboxEquationRootX1.getChildren().addAll(labelRootX1, rootX1, new Label("   "), calculateRootsButton);
@@ -210,7 +208,6 @@ public class GUIQuadraticEquationCalculator {
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
-        rootX2.setDisable(true);
         hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2);
         return hboxEquationRootX2;
     }

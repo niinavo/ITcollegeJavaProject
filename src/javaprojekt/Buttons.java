@@ -36,25 +36,21 @@ public class Buttons {
             coefficientC.setStyle("-fx-text-inner-color: black;");
             rootX1.clear();
             rootX2.clear();
-            rootX1.setDisable(true);
-            rootX1.setEditable(false);
-            rootX2.setDisable(true);
-            rootX2.setEditable(false);
         });
     }
 
     /**
      * Setup button "Calculate roots" which calculates solutions of equation if
-     * coefficients of equations are entered into input textfield
+     * coefficients of equations are entered into input textfields
      */
     public void setupCalculateRootsButton(
             TextField coefficientA,TextField coefficientB, TextField coefficientC,
             TextField rootX1, TextField rootX2,Button calculateRootsButton)
     {
         calculateRootsButton.setOnAction(event2 -> {
-            final BigDecimal a = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientA.getText());
-            final BigDecimal b = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientB.getText());
-            final BigDecimal c = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientC.getText());
+            BigDecimal a = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientA.getText());
+            BigDecimal b = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientB.getText());
+            BigDecimal c = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientC.getText());
             //Checking if string entered into coefficient 'a' textfield cannot be converted to BigDecimal
             //(i.e. checking if use entered non-number or decimal number in wrong format #,##)
             if (a==null){
@@ -78,23 +74,18 @@ public class Buttons {
             }
 
             try {
-                final List<BigDecimal> solutions = javaprojekt.RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
+                List<BigDecimal> solutions = javaprojekt.RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
                 rootX1.setText(solutions.get(0).toPlainString());
-                rootX1.setDisable(false);
                 // checking if an equation has two solutions x1 and x2 (which can be equal to each other)
                 if (solutions.size()>1){
                     rootX2.setText(solutions.get(1).toPlainString());
-                    rootX2.setDisable(false);
                 } else {
                     rootX2.setText("-");
-                    rootX2.setDisable(true);
                 }
             }
             catch (NumberFormatException nfe){
                 rootX1.setText("no roots");
-                rootX1.setDisable(true);
                 rootX2.setText("no roots");
-                rootX2.setDisable(true);
             }
         });
     }
