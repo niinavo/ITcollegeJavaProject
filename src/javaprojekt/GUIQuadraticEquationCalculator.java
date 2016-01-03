@@ -90,7 +90,7 @@ public class GUIQuadraticEquationCalculator {
         hboxTitle.getChildren().add(labelTitle);
         return hboxTitle;
     }
-
+ 
     /**
      * Provide a read-only horizontal box with text "Quadratic equation:" and quadratic equation
      * @return Horizontal box with text "Quadratic equation:" and quadratic equation
