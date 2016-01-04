@@ -14,3 +14,4 @@ See projekt on abiks neile, kel tuleb lahendada ruutvõrrandeid.
 3. Arvutatud lahendite väärtused ilmuvad lahtritesse "x1=" ja "x2="
 4. Kui võrrandil puuduvad lahendid, siis lahendite lahtrisse ilmub "no roots".
 5. Nupp "Clear" tühistab nii sisestatud kordajate kui ka arvutatud lahendite väärtused vastavates lahtrites.
+6. Nupp "Write to file" kirjutab nii sisend- kui ka väljundandmed faili tekst.txt.
