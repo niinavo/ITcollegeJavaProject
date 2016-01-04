@@ -14,6 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.math.BigDecimal;
+
 /**
  * JavaFX application for solving quadratic equations a*x*x+b*x+c=0
  * if coefficients a,b and c are entered. Only case of real-number solutions
@@ -42,14 +45,14 @@ public class GUIQuadraticEquationCalculator {
     /** Button calculates solutions of equation if
      * coefficients of equations are entered into input textfields */
     Button calculateRootsButton;
-    Button setupChart;
+    Button chartButton;
+    Stage stage2;
 
     GUIQuadraticEquationCalculator() {
         setupScene();
         Buttons buttons=new Buttons();
         buttons.setupClearButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,clearButton);
         buttons.setupCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,calculateRootsButton);
-        //buttons.setupChartButton(setupChart);
     }
 
     private void setupScene() {
@@ -195,7 +198,7 @@ public class GUIQuadraticEquationCalculator {
         rootX1.setEditable(false);
         calculateRootsButton = new Button("Calculate roots");
         calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
-        hboxEquationRootX1.getChildren().addAll(labelRootX1, rootX1, new Label("   "), calculateRootsButton);
+        hboxEquationRootX1.getChildren().addAll(labelRootX1, rootX1, new Label("  "), calculateRootsButton);
         return hboxEquationRootX1;
     }
 
@@ -205,13 +208,16 @@ public class GUIQuadraticEquationCalculator {
      * @return Horizontal box with text "x2=", textfield for calculated root x1 of equation
      * and button "calculate roots"
      */
-    private HBox buildEquationRootX2() {
+    public HBox buildEquationRootX2() {
         HBox hboxEquationRootX2 = new HBox(5);
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
-        Button setupChart=new Button("Chart");
-        hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2,setupChart);
+        Button writeToFileButton=new Button("Write to file");
+        writeToFileButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        Buttons buttons=new Buttons();
+        buttons.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2, new Label("  "),writeToFileButton);
         return hboxEquationRootX2;
     }
 }

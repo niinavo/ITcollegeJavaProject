@@ -1,23 +1,33 @@
 package javaprojekt;
 
 
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
+import javafx.geometry.Side;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.function.Function;
 
 /**
- * Class for setting up actions of 2 buttons: button "Clear" and button "Calculate roots"
+ * Class for setting up actions of 3 buttons: button "Clear", button "Calculate roots"
+ * and button "Write to file"
  */
 public class Buttons {
-
     /**
      * Setup button "Clear" which clears contents of input and output textfields
      * and resets initial textfields style
@@ -83,40 +93,53 @@ public class Buttons {
             {
                 List<BigDecimal> solutions = javaprojekt.RootsOfQuadraticEquation.calculateSolutionsOfEquation(a, b, c);
                 if (solutions.size()==1)
-                {System.out.println("1");
+                {
                     rootX1.setText(solutions.get(0).toPlainString());
                     rootX2.setText("-");
                 }
                 if (solutions.size()==2)
-
-                {System.out.println("2");
+                {
                     rootX1.setText(solutions.get(0).toPlainString());
                     rootX2.setText(solutions.get(1).toPlainString());
                 }
-                System.out.println("number of roots="+solutions.size());
             }
             catch (NumberFormatException nfe)
             {
-                System.out.println("nfe");
                 rootX1.setText("no roots");
                 rootX2.setText("no roots");
             }
-            System.out.println("x1="+rootX1.getText());
-            System.out.println("x2="+rootX2.getText());
 
         });
     }
 
-    public void setupChartButton(Button setupChart){
-        System.out.println("chart");
-        setupChart.setOnAction(event -> {
-            Stage stage2 = new Stage();
-            Pane layout = new Pane();
-            layout.setStyle("-fx-background-color: lightskyblue;");
-
-            stage2.setTitle("y = \u00BC(x+4)(x+1)(x-2)");
-            stage2.setScene(new Scene(layout, Color.rgb(35, 39, 50)));
-            stage2.show();
+    /**
+     * Setup button which writes input (coefficients 'a', 'b', 'c') and
+     * output (solutions 'x1' and 'x2') data into file "text.txt"
+     */
+    public void setupWriteToFileButton(
+            Button writeToFileButton,TextField coefficientA, TextField coefficientB,
+            TextField coefficientC,TextField rootX1,TextField rootX2){
+            writeToFileButton.setOnAction(event -> {
+            String a=coefficientA.getText();
+            String b=coefficientB.getText();
+            String c=coefficientC.getText();
+            String x1=rootX1.getText();
+            String x2=rootX2.getText();
+            File file = new File("tekst.txt");
+            try
+            {
+                FileWriter fw = new FileWriter(file,true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
+                pw.println("a="+a+",  b="+b+",  c="+c+",  x1="+x1+",  x2="+x2);
+                pw.close();
+            }
+            catch(IOException ex)
+            {
+                System.out.println("Could not write to file");
+                System.exit(0);
+            }
         });
     }
+
 }
