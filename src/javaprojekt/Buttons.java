@@ -1,27 +1,10 @@
 package javaprojekt;
 
-
-import javafx.beans.binding.Bindings;
-import javafx.geometry.Insets;
-import javafx.geometry.Side;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * Class for setting up actions of 3 buttons: button "Clear", button "Calculate roots"

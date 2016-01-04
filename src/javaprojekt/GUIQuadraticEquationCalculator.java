@@ -14,9 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.math.BigDecimal;
-
 /**
  * JavaFX application for solving quadratic equations a*x*x+b*x+c=0
  * if coefficients a,b and c are entered. Only case of real-number solutions
