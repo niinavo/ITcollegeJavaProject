@@ -36,20 +36,26 @@ public class GUIQuadraticEquationCalculator {
     /** TextField for calculated solution x2 of equation */
     TextField rootX2 = new TextField();
 
-    /**Button  clears contents of input and output textfields
+    /**Button clears contents of input and output textfields
      * and resets initial textfields style*/
     Button clearButton;
     /** Button calculates solutions of equation if
      * coefficients of equations are entered into input textfields */
     Button calculateRootsButton;
-    Button chartButton;
-    Stage stage2;
+    /**
+     * Setup button which writes input (coefficients 'a', 'b', 'c') and
+     * output (solutions 'x1' and 'x2') data into file "tekst.txt"
+     */
+    Button writeToFileButton;
 
     GUIQuadraticEquationCalculator() {
         setupScene();
-        Buttons buttons=new Buttons();
-        buttons.setupClearButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,clearButton);
-        buttons.setupCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2,calculateRootsButton);
+        SetupClearButton button1=new SetupClearButton();
+        button1.setupClearButton(clearButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        SetupCalculateRootsButton button2=new SetupCalculateRootsButton();
+        button2.setupCalculateRootsButton(calculateRootsButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        SetupWriteToFileButton button3=new SetupWriteToFileButton();
+        button3.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
     }
 
     private void setupScene() {
@@ -210,10 +216,8 @@ public class GUIQuadraticEquationCalculator {
         Label labelRootX2 = new Label("x2 = ");
         labelRootX2.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
         rootX2.setEditable(false);
-        Button writeToFileButton=new Button("Write to file");
+        writeToFileButton=new Button("Write to file");
         writeToFileButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
-        Buttons buttons=new Buttons();
-        buttons.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
         hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2, new Label("  "),writeToFileButton);
         return hboxEquationRootX2;
     }
