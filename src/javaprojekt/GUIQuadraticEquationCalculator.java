@@ -50,12 +50,8 @@ public class GUIQuadraticEquationCalculator {
 
     GUIQuadraticEquationCalculator() {
         setupScene();
-        SetupClearButton button1=new SetupClearButton();
-        button1.setupClearButton(clearButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
-        SetupCalculateRootsButton button2=new SetupCalculateRootsButton();
-        button2.setupCalculateRootsButton(calculateRootsButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
-        SetupWriteToFileButton button3=new SetupWriteToFileButton();
-        button3.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        //SetupWriteToFileButton button3=new SetupWriteToFileButton();
+        //button3.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
     }
 
     private void setupScene() {
@@ -108,10 +104,9 @@ public class GUIQuadraticEquationCalculator {
         hboxEquation.setAlignment(Pos.CENTER_LEFT);
         Label labelQuadraticEquation = new Label("Quadratic equation:");
         labelQuadraticEquation.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        ImageView imv1 = new ImageView();
-        Image imageQuadraticEquation = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
-        imv1.setImage(imageQuadraticEquation);
-        hboxEquation.getChildren().addAll(labelQuadraticEquation, imv1);
+        Image quadraticEquationImage = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquation.png"));
+        ImageView quadraticEquationImageView = new ImageView(quadraticEquationImage);
+        hboxEquation.getChildren().addAll(labelQuadraticEquation,quadraticEquationImageView);
         return hboxEquation;
     }
 
@@ -166,6 +161,9 @@ public class GUIQuadraticEquationCalculator {
         coefficientC.setPrefSize(260.0, 37.0);
         clearButton = new Button("Clear");
         clearButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        clearButton.setOnAction(event -> {
+            SetupActionOfClearButton.setupActionOfClearButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        });
         hboxCCoeff.getChildren().addAll(cCoeff, this.coefficientC, new Label("   "), clearButton);
         return hboxCCoeff;
     }
@@ -181,10 +179,9 @@ public class GUIQuadraticEquationCalculator {
         hboxRootsFormula.setAlignment(Pos.CENTER_LEFT);
         Label labelEquationRoots = new Label("Roots of quadratic equation:");
         labelEquationRoots.setStyle("-fx-font: 22 arial; -fx-font-weight: normal; -fx-text-fill: darkblue");
-        ImageView imv2 = new ImageView();
-        Image imageQuadraticEquationRoots = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
-        imv2.setImage(imageQuadraticEquationRoots);
-        hboxRootsFormula.getChildren().addAll(labelEquationRoots, imv2);
+        Image quadraticEquationRootsImage = new Image(GUIQuadraticEquationCalculator.class.getResourceAsStream("QuadraticEquationRoots.png"));
+        ImageView quadraticEquationRootsImageView = new ImageView(quadraticEquationRootsImage);
+        hboxRootsFormula.getChildren().addAll(labelEquationRoots,quadraticEquationRootsImageView);
         return hboxRootsFormula;
     }
 
@@ -201,6 +198,9 @@ public class GUIQuadraticEquationCalculator {
         rootX1.setEditable(false);
         calculateRootsButton = new Button("Calculate roots");
         calculateRootsButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        calculateRootsButton.setOnAction(event -> {
+            SetupActionOfCalculateRootsButton.setupActionOfCalculateRootsButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        });
         hboxEquationRootX1.getChildren().addAll(labelRootX1, rootX1, new Label("  "), calculateRootsButton);
         return hboxEquationRootX1;
     }
@@ -218,6 +218,9 @@ public class GUIQuadraticEquationCalculator {
         rootX2.setEditable(false);
         writeToFileButton=new Button("Write to file");
         writeToFileButton.setStyle("-fx-font: 22 arial; -fx-base: #66ccff;; -fx-text-fill: darkblue");
+        writeToFileButton.setOnAction(event -> {
+            SetupActionOfWriteToFileButton.setupActionOfWriteToFileButton(coefficientA,coefficientB,coefficientC,rootX1,rootX2);
+        });
         hboxEquationRootX2.getChildren().addAll(labelRootX2, rootX2, new Label("  "),writeToFileButton);
         return hboxEquationRootX2;
     }

@@ -1,21 +1,18 @@
 package javaprojekt;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-public class SetupCalculateRootsButton {
+public class SetupActionOfCalculateRootsButton {
     /**
      * Setup button "Calculate roots" which calculates solutions of equation if
      * coefficients of equations are entered into input textfields
      */
-    public void setupCalculateRootsButton(
-            Button button,TextField coefficientA, TextField coefficientB, TextField coefficientC,
+    public static void setupActionOfCalculateRootsButton(
+            TextField coefficientA, TextField coefficientB, TextField coefficientC,
             TextField rootX1, TextField rootX2)
     {
-        button.setOnAction(event2 -> {
             BigDecimal a = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientA.getText());
             BigDecimal b = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientB.getText());
             BigDecimal c = RootsOfQuadraticEquation.convertStringToBigDecimal(coefficientC.getText());
@@ -67,7 +64,5 @@ public class SetupCalculateRootsButton {
                 rootX1.setText("no roots");
                 rootX2.setText("no roots");
             }
-
-        });
     }
 }
