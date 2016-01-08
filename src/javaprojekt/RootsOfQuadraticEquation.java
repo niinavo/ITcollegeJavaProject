@@ -17,7 +17,7 @@ public class RootsOfQuadraticEquation {
     /**
      * Converts String to BigDecimal.
      *@param str String to be converted to BigDecimal.
-     *@return The BigDecimal corresponding to the provided String or Double.null
+     *@return The BigDecimal corresponding to the provided String or Double. null
      *     if the conversion cannot be performed.
      */
     public static BigDecimal convertStringToBigDecimal(String str)
