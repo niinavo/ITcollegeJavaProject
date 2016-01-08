@@ -50,8 +50,6 @@ public class GUIQuadraticEquationCalculator {
 
     GUIQuadraticEquationCalculator() {
         setupScene();
-        //SetupWriteToFileButton button3=new SetupWriteToFileButton();
-        //button3.setupWriteToFileButton(writeToFileButton,coefficientA,coefficientB,coefficientC,rootX1,rootX2);
     }
 
     private void setupScene() {
