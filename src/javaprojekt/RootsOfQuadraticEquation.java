@@ -15,25 +15,6 @@ import java.util.List;
 public class RootsOfQuadraticEquation {
 
     /**
-     * Converts String to BigDecimal.
-     *@param str String to be converted to BigDecimal.
-     *@return The BigDecimal corresponding to the provided String or Double. null
-     *     if the conversion cannot be performed.
-     */
-    public static BigDecimal convertStringToBigDecimal(String str)
-    {
-        BigDecimal stringConvertedToNumber;
-        try
-        {
-            stringConvertedToNumber = new BigDecimal(str);
-        }
-        catch (NumberFormatException nfe)
-        {
-            stringConvertedToNumber = null;
-        }
-        return stringConvertedToNumber;
-    }
-    /**
      * Calculate roots of quadratic equation a*x*x+b*x+c=0.
      * @param a Coefficient 'a' from a quadratic equation to be solved.
      * @param b Coefficient 'b' from a quadratic equation to be solved.
@@ -146,5 +127,25 @@ public class RootsOfQuadraticEquation {
             throw new NumberFormatException("Denominator cannot be equal to zero");
         }
         return a.multiply(convertStringToBigDecimal("2"));
+    }
+    
+    /**
+     * Converts String to BigDecimal.
+     *@param str String to be converted to BigDecimal.
+     *@return The BigDecimal corresponding to the provided String or Double. null
+     *     if the conversion cannot be performed.
+     */
+    public static BigDecimal convertStringToBigDecimal(String str)
+    {
+        BigDecimal stringConvertedToNumber;
+        try
+        {
+            stringConvertedToNumber = new BigDecimal(str);
+        }
+        catch (NumberFormatException nfe)
+        {
+            stringConvertedToNumber = null;
+        }
+        return stringConvertedToNumber;
     }
 }
