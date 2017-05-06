@@ -1,6 +1,6 @@
 # Quadratic Equation Solver
 
-Tehtud Niina Voropajeva poolt IT Kolledži aine i200 Programmeerimise algkursus Java baasil (kaugõpe) raames.
+Tehtud IT Kolledži aine i200 Programmeerimise algkursus Java baasil (kaugõpe) raames.
 
 #Projekti kirjeldus
 
